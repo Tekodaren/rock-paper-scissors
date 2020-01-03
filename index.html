@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Rock Paper Scissors</title>
+</head>
+<body>
+  <script>
+
+    function getRandomInt() {
+      let upper = 2;
+      let lower = 0;
+      return Math.floor( Math.random() * (upper - lower + 1) ) + lower;
+    }
+
+    function computerPlay() {
+      let handArray = ["Rock", "Paper", "Scissors"];
+      return handArray[getRandomInt()];
+    }
+
+    function playRound(playerSelection, computerSelection) {
+      if (playerSelection == "Rock" && computerSelection == "Scissors") {
+        return "You win. Rock beats scissors!"
+      } else if (playerSelection == "Rock" && computerSelection == "Paper") {
+        return "You lose. Paper beats rock!"
+      } else if (playerSelection == "Rock" && computerSelection == "Rock") {
+        return "You tied."
+      }
+
+      if (playerSelection == "Scissors" && computerSelection == "Paper") {
+        return "You win. Scissors beats paper!"
+      } else if (playerSelection == "Scissors" && computerSelection == "Rock") {
+        return "You lose. Rock beats scissors!"
+      } else if (playerSelection == "Scissors" && computerSelection == "Scissors") {
+        return "You tied"
+      }
+
+      if (playerSelection == "Paper" && computerSelection == "Rock") {
+        return "You win. Paper beats rock!"
+      } else if (playerSelection == "Paper" && computerSelection == "Scissors") {
+        return "You lose. Scissors beats paper!"
+      } else if (playerSelection == "Paper" && computerSelection == "Paper") {
+        return "You tied."
+      }
+    }
+    
+
+   function game() {
+     let playerScore = 0;
+     let computerScore = 0;
+     for (let i = 0; i < 5; i++) {
+      choice = prompt("Rock, scissors or paper?")
+      choiceStyle = choice.charAt(0).toUpperCase() + choice.slice(1).toLowerCase();
+      let result = playRound(choiceStyle, computerPlay(getRandomInt()));
+      console.log(result);
+      if (result.slice(4,7) == "win") {
+        playerScore++;
+      } else if (result.slice(4,8) == "lose") {
+        computerScore++;
+      } else {
+        continue;
+      }
+     }
+
+     if (playerScore > computerScore) {
+       alert("You win, " + playerScore + " vs " + computerScore + "!");
+     } else if (computerScore > playerScore) {
+       alert("You lose, " + playerScore + " vs " + computerScore + "!");
+     } else {
+       alert("You tied!")
+     }
+   }
+   
+   
+   game();
+
+
+  </script>
+</body>
+</html>
